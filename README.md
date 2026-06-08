@@ -16,6 +16,19 @@ The upstream Coco-LIC repository is a ROS1 Noetic/catkin package. This repositor
 
 This is not an official APRIL-ZJU release.
 
+## What Is Included
+
+- Continuous-time non-uniform B-spline trajectory representation.
+- LiDAR, IMU, and camera factor code ported to ROS2/Ceres 2.2-era APIs.
+- Livox and Velodyne feature extraction paths.
+- `rosbag2_cpp` input with storage auto-detection for sqlite3 and MCAP bags.
+- ROS2 `odometry_node` for offline bag replay.
+- Optional mapper-contract topics (`/image_for_gs`, `/depth_for_gs`,
+  `/camera_info_for_gs`, `/pose_for_gs`, `/points_for_gs`) and
+  `RenderedFeedback` plumbing for downstream mapper experiments.
+- Smoke tests for rosbag2 ingest, per-point LiDAR timing, and storage
+  auto-detection.
+
 ## Build
 
 ```bash
@@ -28,6 +41,19 @@ source install/setup.bash
 ```
 
 The port expects system Ceres, Eigen, PCL, OpenCV, yaml-cpp, glog, LZ4, and rosbag2 packages available through Ubuntu 24.04 / ROS2 Jazzy.
+
+## Data Requirements
+
+For centimeter-grade continuous-time deskew, the LiDAR point cloud must carry
+per-point timing. On FAST-LIVO2/Livox-style data this means a `PointCloud2`
+field such as `offset_time`; a cloud with only `x/y/z/intensity` is not enough
+to reproduce the upstream timing semantics.
+
+Expected streams for the provided FAST-LIVO2 examples:
+
+- `/imu`: `sensor_msgs/msg/Imu`
+- `/livox/lidar`: `sensor_msgs/msg/PointCloud2` with per-point timing
+- camera image and camera info topics for LICO mode
 
 ## Run
 
@@ -66,6 +92,13 @@ reference path.
 These are trajectory-validation numbers for the standalone odometry port. The
 large bags, TUM trajectories, and long-form reports are not committed to git;
 publish them through releases or external artifact storage when needed.
+
+## Scope
+
+This repository is the Coco-LIC odometry frontend port. It does not ship a
+Gaussian Splatting mapper, TensorRT depth completion engine, or dataset bags.
+The CI gate verifies ROS2 Jazzy build/test health; dataset-level ATE validation
+requires local data and reference trajectories.
 
 ## Validation Notes
 
