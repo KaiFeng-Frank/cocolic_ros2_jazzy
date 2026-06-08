@@ -1,0 +1,16 @@
+build/
+install/
+log/
+.colcon/
+
+data/
+*.bag
+*.db3
+*.mcap
+*.tum
+*.pcd
+*.ply
+
+__pycache__/
+*.pyc
+.cache/
