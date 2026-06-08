@@ -30,7 +30,7 @@
   <depend>liblz4-dev</depend>
   <depend>libopencv-dev</depend>
   <depend>libpcl-all-dev</depend>
-  <depend>libyaml-cpp-dev</depend>
+  <depend>yaml-cpp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

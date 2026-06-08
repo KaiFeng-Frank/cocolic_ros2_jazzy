@@ -14,15 +14,48 @@ jobs:
         with:
           required-ros-distributions: jazzy
 
-      - uses: ros-tooling/action-ros-ci@v0.4
-        with:
-          package-name: cocolic gaussian_lic_msgs
-          target-ros2-distro: jazzy
-          colcon-defaults: |
-            {
-              "build": {
-                "cmake-args": [
-                  "-DCMAKE_BUILD_TYPE=Release"
-                ]
-              }
-            }
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3-ament-package \
+            python3-colcon-common-extensions \
+            ros-jazzy-ament-cmake \
+            ros-jazzy-builtin-interfaces \
+            ros-jazzy-cv-bridge \
+            ros-jazzy-geometry-msgs \
+            ros-jazzy-nav-msgs \
+            ros-jazzy-pcl-conversions \
+            ros-jazzy-rclcpp \
+            ros-jazzy-rosbag2-cpp \
+            ros-jazzy-rosbag2-storage \
+            ros-jazzy-rosidl-default-generators \
+            ros-jazzy-rosidl-default-runtime \
+            ros-jazzy-sensor-msgs \
+            ros-jazzy-std-msgs \
+            ros-jazzy-tf2 \
+            ros-jazzy-tf2-eigen \
+            ros-jazzy-tf2-ros \
+            ros-jazzy-visualization-msgs \
+            libceres-dev \
+            libeigen3-dev \
+            libgoogle-glog-dev \
+            liblz4-dev \
+            libopencv-dev \
+            libpcl-dev \
+            libyaml-cpp-dev
+
+      - name: Build
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build \
+            --symlink-install \
+            --packages-select gaussian_lic_msgs cocolic \
+            --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+      - name: Test
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          colcon test --packages-select gaussian_lic_msgs cocolic
+          colcon test-result --verbose
