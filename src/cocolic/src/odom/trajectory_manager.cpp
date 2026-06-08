@@ -446,9 +446,9 @@ namespace cocolic
             trajectory_->GetSensorEP(CameraSensor).p,
             K_, opt_weight_.image_weight);
 
-        // GL2 step-2c: render-photometric factor — align the observed image to the
+        // Render-photometric: render-photometric factor — align the observed image to the
         // rendered-map reference patch (sampled at this pnp pixel). Refines the same
-        // continuous-time pose the PnP factor touches; reuses track A's native factor.
+        // continuous-time pose the PnP factor touches; reuses the native Coco-LIC factor.
         if (rp_enable_ && i < (int)rp_valid_.size() && rp_valid_[i] &&
             !rp_observed_gray_.empty() && (int)rp_patches_[i].size() > 0)
         {
@@ -631,7 +631,7 @@ namespace cocolic
 
       if (!drop_set.empty())
       {
-        double weight = LidarWeightAt(v.t_point);  // GL2 demo: time-windowed degradation
+        double weight = LidarWeightAt(v.t_point);  // Diagnostic: time-windowed degradation
         if (use_lidar_scale)
         {
           weight *= v.scale;

@@ -1,8 +1,8 @@
 # Coco-LIC ROS2 Jazzy
 
-Unofficial ROS2 Jazzy port of [APRIL-ZJU/Coco-LIC](https://github.com/APRIL-ZJU/Coco-LIC), the continuous-time tightly-coupled LiDAR-Inertial-Camera odometry frontend used by Gaussian-LIC / Gaussian-LIC2.
+Unofficial ROS2 Jazzy port of [APRIL-ZJU/Coco-LIC](https://github.com/APRIL-ZJU/Coco-LIC), the continuous-time tightly-coupled LiDAR-Inertial-Camera odometry system.
 
-The upstream Coco-LIC repository is a ROS1 Noetic/catkin package. This repository extracts the ROS2 Jazzy port into a standalone workspace so it can be built and tested independently from the larger Gaussian-LIC2 ROS2 mapping stack.
+The upstream Coco-LIC repository is a ROS1 Noetic/catkin package. This repository provides a standalone ROS2 Jazzy workspace so the Coco-LIC odometry port can be built and tested independently.
 
 ## Status
 
@@ -52,7 +52,7 @@ ros2 run cocolic odometry_node config/ct_odometry_lico.yaml
 
 ## Validation Notes
 
-This standalone repository is sourced from the Coco-LIC ROS2 port that was validated inside `gaussian_lic_ros2`. The archived GL2 evidence reported cm-scale parity against the upstream Coco-LIC-generated FAST-LIVO2 CBD reference, but the large bag files and trajectory artifacts are intentionally not committed here. Keep reproducibility data in releases or external storage rather than in git history.
+This repository keeps source, configs, and CI in git. Large reproducibility artifacts are intentionally not committed here: rosbag2 datasets, generated trajectories, point clouds, maps, and long-form release reports should live in GitHub Releases, external storage, or Git LFS.
 
 The key porting details preserved here are:
 
@@ -84,4 +84,3 @@ Please cite the original Coco-LIC paper when using this port:
   publisher={IEEE}
 }
 ```
-

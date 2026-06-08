@@ -1,12 +1,7 @@
-# Validation Provenance
+# Validation
 
-This standalone repository was extracted from the Coco-LIC ROS2 port developed
-inside `gaussian_lic_ros2`.
-
-The source port was validated there against an upstream Coco-LIC-generated
-FAST-LIVO2 `CBD_Building_01` reference trajectory. The archived GL2 workspace
-reported cm-scale parity for the faithful LIO/LICO frontend path and used
-hash-locked evidence gates to prevent trajectory drift.
+This repository keeps validation reproducible without committing large datasets
+or generated outputs to git.
 
 Large inputs and outputs are intentionally not committed in this standalone
 repository:
@@ -14,7 +9,7 @@ repository:
 - rosbag2 / MCAP datasets
 - generated TUM trajectories
 - point clouds and maps
-- hash-locked release reports from the larger GL2 workspace
+- long-form release reports
 
 For this repository, keep the git history focused on source, configs, and CI.
 When publishing large validation artifacts, prefer GitHub Releases, external
