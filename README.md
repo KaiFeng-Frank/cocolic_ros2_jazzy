@@ -50,6 +50,23 @@ For LiDAR-Inertial-Camera mode:
 ros2 run cocolic odometry_node config/ct_odometry_lico.yaml
 ```
 
+## Validation Snapshot
+
+The ROS2 port has been checked against an upstream Coco-LIC-generated
+FAST-LIVO2 `CBD_Building_01` reference trajectory. The validation uses yaw
+alignment, `0.02 s` timestamp association, and the full `117.15 s` / `33.36 m`
+reference path.
+
+| Mode | Matched poses | Coverage | ATE RMSE | Mean error | Max error | Path drift |
+|------|---------------|----------|----------|------------|-----------|------------|
+| LIO | 1231 / 1231 | 100% | 2.12 cm | 1.93 cm | 5.29 cm | 0.414% |
+| LICO | 1231 / 1231 | 100% | 2.27 cm | 2.03 cm | 5.63 cm | 0.397% |
+| LICO camera-fixed probe | 1231 / 1231 | 100% | 2.81 cm | 2.37 cm | 8.25 cm | 0.740% |
+
+These are trajectory-validation numbers for the standalone odometry port. The
+large bags, TUM trajectories, and long-form reports are not committed to git;
+publish them through releases or external artifact storage when needed.
+
 ## Validation Notes
 
 This repository keeps source, configs, and CI in git. Large reproducibility artifacts are intentionally not committed here: rosbag2 datasets, generated trajectories, point clouds, maps, and long-form release reports should live in GitHub Releases, external storage, or Git LFS.
