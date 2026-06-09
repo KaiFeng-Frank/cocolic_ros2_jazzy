@@ -49,6 +49,13 @@ per-point timing. On FAST-LIVO2/Livox-style data this means a `PointCloud2`
 field such as `offset_time`; a cloud with only `x/y/z/intensity` is not enough
 to reproduce the upstream timing semantics.
 
+Supported LiDAR input paths:
+
+| LiDAR family | Required point fields | Port status |
+|--------------|-----------------------|-------------|
+| Livox / Avia-style solid-state LiDAR | `x`, `y`, `z`, `intensity`, `tag`, `line`, and per-point `offset_time` | Default FAST-LIVO2 configuration; used by the validation snapshot below. |
+| Velodyne / rotating multi-line LiDAR | `x`, `y`, `z`, `intensity`, `ring`, and one per-point time field named `time`, `t`, or `timestamp` | Feature extraction path is ported; requires dataset-specific calibration and `is_livox: false` configuration before trajectory validation. |
+
 Expected streams for the provided FAST-LIVO2 examples:
 
 - `/imu`: `sensor_msgs/msg/Imu`
