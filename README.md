@@ -4,6 +4,15 @@ Unofficial ROS2 Jazzy port of [APRIL-ZJU/Coco-LIC](https://github.com/APRIL-ZJU/
 
 The upstream Coco-LIC repository is a ROS1 Noetic/catkin package. This repository provides a standalone ROS2 Jazzy workspace so the Coco-LIC odometry port can be built and tested independently.
 
+## Forked / Ported From
+
+This work is a ROS2 Jazzy port based on
+[`APRIL-ZJU/Coco-LIC`](https://github.com/APRIL-ZJU/Coco-LIC). The original
+Coco-LIC algorithm, paper lineage, and upstream implementation credit belong to
+the APRIL-ZJU authors. This repository focuses on the ROS2 build, rosbag2 input,
+Ceres 2.2 compatibility, launch/config surface, and validation packaging around
+that upstream work.
+
 ## Status
 
 - ROS2 distribution: Jazzy only.
