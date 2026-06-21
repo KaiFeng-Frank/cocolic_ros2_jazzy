@@ -3,6 +3,21 @@
 This repository keeps validation reproducible without committing large datasets
 or generated outputs to git.
 
+## Public Artifact State
+
+The current public repository contains source code, configs, CI, comparison
+scripts, and the validation snapshot below. It does not yet attach a GitHub
+Release bundle with the raw bag, generated TUM files, or long-form run reports.
+
+For a public reproduction bundle, publish these files outside normal git history
+and link the release from this document:
+
+- FAST-LIVO2 `CBD_Building_01` rosbag2/MCAP input with per-point LiDAR timing
+- upstream Coco-LIC reference trajectory in TUM format
+- ROS2 LIO output trajectory in TUM format
+- ROS2 LICO output trajectory in TUM format
+- trajectory comparison JSON or text report for each mode
+
 ## Trajectory Snapshot
 
 The port has been checked against an upstream Coco-LIC-generated FAST-LIVO2
@@ -18,18 +33,6 @@ alignment mode is yaw-only, and the reference contains `1231` poses over
 
 These numbers validate the odometry port. They are not mapping, rendering, or
 Gaussian-splatting quality metrics.
-
-Large inputs and outputs are intentionally not committed in this standalone
-repository:
-
-- rosbag2 / MCAP datasets
-- generated TUM trajectories
-- point clouds and maps
-- long-form release reports
-
-For this repository, keep the git history focused on source, configs, and CI.
-When publishing large validation artifacts, prefer GitHub Releases, external
-storage, or Git LFS.
 
 ## Local Smoke Test
 

@@ -9,6 +9,9 @@ The upstream Coco-LIC repository is a ROS1 Noetic/catkin package. This repositor
 - ROS2 distribution: Jazzy only.
 - Build system: `ament_cmake` / `colcon`.
 - Runtime entry point: `ros2 run cocolic odometry_node <config.yaml>`.
+- Public artifact state: source, configs, CI, and validation summaries are in
+  git; large dataset bags and generated trajectories are not currently packaged
+  as a GitHub Release.
 - Included packages:
   - `cocolic`: continuous-time spline odometry, LiDAR/IMU/camera factors, rosbag2 input, ROS2 node wrapper.
   - `gaussian_lic_msgs`: minimal message package required by the ported feedback interfaces.
@@ -96,9 +99,9 @@ reference path.
 | LICO | 1231 / 1231 | 100% | 2.27 cm | 2.03 cm | 5.63 cm | 0.397% |
 | LICO camera-fixed probe | 1231 / 1231 | 100% | 2.81 cm | 2.37 cm | 8.25 cm | 0.740% |
 
-These are trajectory-validation numbers for the standalone odometry port. The
-large bags, TUM trajectories, and long-form reports are not committed to git;
-publish them through releases or external artifact storage when needed.
+These are trajectory-validation numbers for the standalone odometry port, not
+mapping or rendering metrics. See [`docs/VALIDATION.md`](docs/VALIDATION.md) for
+the reproducibility boundary, expected artifacts, and comparison command.
 
 ## Scope
 
@@ -107,9 +110,18 @@ Gaussian Splatting mapper, TensorRT depth completion engine, or dataset bags.
 The CI gate verifies ROS2 Jazzy build/test health; dataset-level ATE validation
 requires local data and reference trajectories.
 
-## Validation Notes
+## Reproducibility Boundary
 
-This repository keeps source, configs, and CI in git. Large reproducibility artifacts are intentionally not committed here: rosbag2 datasets, generated trajectories, point clouds, maps, and long-form release reports should live in GitHub Releases, external storage, or Git LFS.
+This repository keeps source, configs, CI, and validation summaries in git.
+Large reproducibility artifacts are intentionally not committed here:
+
+- rosbag2 / MCAP datasets
+- generated TUM trajectories
+- point clouds and maps
+- long-form release reports
+
+When those artifacts are ready for public reuse, package them through GitHub
+Releases, external storage, or Git LFS and link them from `docs/VALIDATION.md`.
 
 The key porting details preserved here are:
 
