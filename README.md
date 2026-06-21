@@ -13,6 +13,8 @@ the APRIL-ZJU authors. This repository focuses on the ROS2 build, rosbag2 input,
 Ceres 2.2 compatibility, launch/config surface, and validation packaging around
 that upstream work.
 
+The upstream authors have been informed about this ROS2 port.
+
 ## Status
 
 - ROS2 distribution: Jazzy only.
